@@ -60,6 +60,7 @@ utilmenu = [
 
 [sg.Button("Extract All Textures")],
 [sg.Button("Extract All Textures w/ Dolphin Filenames")],
+[sg.Output(size=(50,10), key='-OUTPUT-')],
 
 [sg.Button("Back")]
 ]
@@ -97,7 +98,10 @@ window3 = sg.Window('Pokemon XD/Colosseum Test GUI - Randomizer Window', randomm
 
 cmd = "GoD-Tool.exe XDGoD.iso"
 
-process = Popen(cmd, text=True, shell=True, stdin=PIPE)
+process = subprocess.Popen(cmd, text=True, bufsize=64, stdin=subprocess.PIPE)
+
+
+
 #--- Window Functions ---#
 
 
@@ -108,27 +112,26 @@ def UtilityMenu():
     """
 
     print('7', file=process.stdin) #// Acess Menu
-
+    process.stdin.flush()
     
     event, value = window2.read() #// Read events
     if event == 'Back':
         print('0', file=process.stdin)
-        window2.close()
+        process.stdin.flush()
 
     if event == "Extract All Textures":
         print('1', file=process.stdin)
-        process.stdin.flush
-        # sg.popup_no_wait("This may take a while, please be patient.")
-
+        process.stdin.flush()
 
     if event == "Extract All Textures w/ Dolphin Filenames":
         print('2', file=process.stdin)
+        process.stdin.flush()
 
 def RandomMenu():
     """
     Function for accessing and using the Randomizer Menu.
 
-    Returns a dict of form {option_index:bool}, checks the bool value and then applies the options by writing to buffer
+    Returns a dict of form {option_index:bool}, checks the bool value and then applies the options by writing to buffer then flushing
     """
     print('8', file=process.stdin)
 
@@ -143,16 +146,22 @@ def RandomMenu():
         process.stdin.flush()
         sg.PopupNoWait("This may take a while, please be patient.")
 
+
+
+
+
+
+
 while True: #// Event loop
     event, values = window.read()
     if event == sg.WIN_CLOSED or event == 'Exit':
         break
     if event == 'Utilities': #// Open Utility Menu
         UtilityMenu()
+        continue
     if event == 'Randomizer':
         RandomMenu()
-    # if event == "Apply":
-        # process.communicate()
+        continue
 
 window.close()
 
