@@ -1,12 +1,14 @@
 from inspect import Parameter
 from math import trunc
+from random import Random
 import subprocess
 from sys import stdin, stdout
+import sys
 from tkinter.constants import TRUE
 import PySimpleGUI as sg
 import os
 import pathlib
-from subprocess import STDOUT, Popen, check_output, PIPE
+from subprocess import STDOUT, Popen, TimeoutExpired, check_output, PIPE
 from PySimpleGUI.PySimpleGUI import ToolTip
 
 
@@ -77,6 +79,7 @@ randommenu = [
 [sg.Checkbox("9 - Randomize TM and Tutor Moves")],
 [sg.Checkbox("10 - Randmoize Evolutions")],
 [sg.Checkbox("11 - Randomize Battle Bingo")],
+[sg.Button("Go!", tooltip="Apply Randomizer Settings")]
 
 ]
 
@@ -93,21 +96,43 @@ window3 = sg.Window('Pokemon XD/Colosseum Test GUI - Randomizer Window', randomm
 
 cmd = "GoD-Tool.exe XDGoD.iso"
 
-process = Popen(cmd, text=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+process = Popen(cmd, text=True, stdin=PIPE)
 #--- Window Functions ---#
 
 
-
 def UtilityMenu():
+
     """
-    Function for Utility Menu
+    Function for Utility Menu.
     """
-    process.communicate("7")
-    ev2, val2 = window2.read()
-    if ev2 == 'Back':
+
+    print('7', file=process.stdin) #// Acess Menu
+
+    
+    event, value = window2.read() #// Read events
+    if event == 'Back':
+        print('0', file=process.stdin)
         window2.close()
-    if ev2 == "Extract All Textures":
-        process.communicate("1")
+
+    if event == "Extract All Textures":
+        print('1', file=process.stdin)
+        sg.popup_no_wait("This may take a while, please be patient.")
+        process.communicate()
+
+    if event == "Extract All Textures w/ Dolphin Filenames":
+        print('2', file=process.stdin)
+        process.communicate()
+
+def RandomMenu():
+    """
+    Function for accessing and using the Randomizer Menu.
+    """
+    print('8', file=process.stdin)
+
+    options = [] #// Stores the settings the user selects.
+
+    event, value = window3.read()
+
 
 while True: #// Event loop
     event, values = window.read()
@@ -115,6 +140,8 @@ while True: #// Event loop
         break
     if event == 'Utilities': #// Open Utility Menu
         UtilityMenu()
+    if event == 'Randomizer':
+        RandomMenu()
 
 window.close()
 
