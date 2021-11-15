@@ -15,7 +15,7 @@ def BackToMain():
     #// This is my lazy solution to navigating to the main menu.
     for i in range(0,3):
         print('0', file=process.stdin)
-        process.flush()
+        process.stdin.flush()
 
 
 #--- Window Definitions ---#
@@ -30,8 +30,7 @@ window4 = sg.Window('Pokemon XD/Colosseum Test GUI - Patches Window', WindowDef.
 
 
 
-#---Menu Objects---#
-utilitywindow = menus.Menu(process, window2).UtilityMenu
+
 
 
 
@@ -41,7 +40,7 @@ while True: #// Event loop
     if event == sg.WIN_CLOSED or event == 'Exit':
         break
     if event == 'Utilities': #// Open Utility Menu
-        utilitywindow
+        menus.Menu(process, window2).UtilityMenu()
     if event == 'Randomizer':
         pass
 
