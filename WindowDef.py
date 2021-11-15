@@ -74,6 +74,7 @@ randommenu = [
 [sg.Checkbox("11 - Randomize Battle Bingo")],
 [sg.Button("Go!", tooltip="Apply Randomizer Settings")],
 [sg.Output(size=(50,10), key='-OUTPUT-')],
+[sg.Button("Back")]
 
 ]
 

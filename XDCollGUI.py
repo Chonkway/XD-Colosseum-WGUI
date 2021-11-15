@@ -42,7 +42,7 @@ while True: #// Event loop
     if event == 'Utilities': #// Open Utility Menu
         menus.Menu(process, window2).UtilityMenu()
     if event == 'Randomizer':
-        pass
+        menus.Menu(process, window3).RandomMenu()
 
 window.close()
 

@@ -84,6 +84,8 @@ class Menu():
                 line = self.process.stdout.readline()
                 print(line)
                 if not line: break 
+            print("\n", file=self.process.stdin)
+            self.process.stdin.flush()
 
     def PatchesMenu():
         """
