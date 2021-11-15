@@ -49,14 +49,3 @@ window.close()
 
 
 
-
-"""
-Checklist
-
-
--Reroute stdout to debug windows
--Clean up code
--Create a cleaner theme
--Find a way for the windows to be reopened at any time
-
-"""
