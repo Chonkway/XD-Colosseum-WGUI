@@ -52,7 +52,7 @@ utilmenu = [
 
 [sg.Button("Extract All Textures")],
 [sg.Button("Extract All Textures w/ Dolphin Filenames")],
-[sg.Output(size=(50,10),font='Courier 10')],
+# [sg.Output(size=(50,10),font='Courier 10')],
 [sg.Button("Back")]
 ]
 
@@ -73,7 +73,7 @@ randommenu = [
 [sg.Checkbox("10 - Randmoize Evolutions")],
 [sg.Checkbox("11 - Randomize Battle Bingo")],
 [sg.Button("Go!", tooltip="Apply Randomizer Settings")],
-[sg.Output(size=(50,10),font='Courier 10')],
+# [sg.Output(size=(50,10),font='Courier 10')],
 [sg.Button("Back")]
 
 ]
@@ -112,6 +112,26 @@ patchmenutab2 = [
 
 #// Patches menu creates a TabGroup of two menus to fit all the patches in.
 patchmenu = [[sg.TabGroup([[sg.Tab('Page 1', patchmenutab1), sg.Tab('Page 2', patchmenutab2)]])],    
-          [sg.Button('Exit')],
-		  [sg.Output(size=(50,10),font='Courier 10')],
+          [sg.Button('Exit')]
 		  ]  
+
+ImpExpMenu = [
+[sg.Menu(menu_def, tearoff=True)],
+[sg.Text('Pokemon XD GoD/Colosseum Tool Import/Export Menu', size=(40, 1), justification='center', font=("Impact", 15), relief=sg.RELIEF_FLAT)],
+
+[sg.Frame('Hover over the buttons for an explaination',layout=[
+[sg.Button("Export", tooltip="Extract and then decode files from all ISO files")],
+[sg.Button("Extract", tooltip="Extract but do not decode files from all ISO files")],
+[sg.Button("Decode", tooltip="Decodes previously -extracted- files from all ISO files\n Decoding is used to decompile scripts, extract textures, etc.")],
+
+[sg.Button("Import", tooltip="Encode and then import all ISO files")],
+[sg.Button("Insert", tooltip="Import but do not reencode for all ISO files")],
+[sg.Button("Encode", tooltip="Encode but do not reimport files for all ISO files")],
+
+[sg.Button("Delete", tooltip="Delete files containing all ISO files")],
+[sg.Button("List", tooltip="Lists all ISO files")],
+])],
+
+[sg.Button("Exit")]
+
+]

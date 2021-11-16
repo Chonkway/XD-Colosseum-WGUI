@@ -40,17 +40,37 @@ class Menu():
             self.process.stdin.flush()
 
             if str(event[0]) == "1":#// Confirming rebuild
-                print(str(event[0]), file=self.process.stdin)
-                self.process.stdin.flush()
+                confirm = sg.PopupYesNo("Doing this will overwrite the ISO. Is this ok?")
+                if confirm.lower() == 'yes':
+                    print('Y', file=self.process.stdin)
+                    self.process.stdin.flush()
+                else:
+                    break
+
+
             if str(event[0]) == "5":
-                pass #// Create a file popup
-        
+                filequery = sg.PopupGetFile('Select the file you wish to add.')
+                if filequery == None:
+                    print('\n', file = self.process.stdin) #// Returns to main menu if file is invalid or user cancels
+                    print('exit', file=self.process.stdin)
+                    self.process.stdin.flush()
+                    break
+                else:
+                    print(filequery, file = self.process.stdin)#// Writes filepath to tool for file addition
+                    self.process.stdin.flush()
 
+                    while True:
+                        line = self.process.stdout.readline()
+                        sg.Print(line, font='Courier 10')
+                        if not line: break
 
+                    print('exit', file=self.process.stdin)
+                    self.process.stdin.flush()
+                    
+                    break
+
+                
     def UtilityMenu(self):
-        """
-        Utility menu has 2 options both of which require () input.
-        """
 
         print('7', file=self.process.stdin) #// Acess Menu
         self.process.stdin.flush()
@@ -68,7 +88,7 @@ class Menu():
             #// Reads stdout 
             while True:
                 line = self.process.stdout.readline()
-                print(line)
+                sg.Print(line, font='Courier 10')
                 if not line: break    
             
         if event == "Extract All Textures w/ Dolphin Filenames":
@@ -77,8 +97,8 @@ class Menu():
 
             while True:
                 line = self.process.stdout.readline()
-                print(line)
-                if not line: break 
+                sg.Print(line, font='Courier 10')
+                if not line: break
 
     def RandomMenu(self):
         """
@@ -102,8 +122,8 @@ class Menu():
             #// Generates stdout
             while True:
                 line = self.process.stdout.readline()
-                print(line)
-                if not line: break 
+                sg.Print(line, font='Courier 10')
+                if not line: break
             print("\n", file=self.process.stdin)
             self.process.stdin.flush()
 
@@ -120,10 +140,10 @@ class Menu():
             print(str(event[0]), file=self.process.stdin)
             self.process.stdin.flush()
 
-            for i in range(0,50):
+            while True:
                 line = self.process.stdout.readline()
-                print(line)
-            pass #// Note to self, somewhere during the execution of the loop it is entering a command infintely again. 
+                sg.Print(line, font='Courier 10')
+                if not line: break
 
             if event == sg.WIN_CLOSED or event == 'Exit':
                 print("0", file=self.process.stdin)
@@ -131,5 +151,21 @@ class Menu():
                 self.window.close()
                 break
         
+    def ImportExportMenu(self):
+        """
+        
+        """
+        print('4', file=self.process.stdin)
+        self.process.stdin.flush()
 
+        while True:
+            event, value = self.window.read()
+            print(str(event.lower()), file=self.process.stdin)
+            
+            while True:
+                line = self.process.stdout.readline()
+                sg.Print(line, font='Courier 10')
+                if not line: break
 
+            if event == sg.WIN_CLOSED or event == 'Exit':
+                break
