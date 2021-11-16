@@ -1,4 +1,4 @@
-import PySimpleGUI
+import PySimpleGUI as sg
 from subprocess import STDOUT, Popen, TimeoutExpired, check_output, PIPE, run
 
 """
@@ -21,15 +21,36 @@ class Menu():
 
     # def __del__(self):
     #     """
-    #     Gonna be honest, I don't know what this does but it crashes without this so ¯\_(ツ)_/¯
+    #     Gonna be honest, I don't know what this does but it used to crash without this so ¯\_(ツ)_/¯
     #     """
     #     self._TKOut.__del__()
 
-    def MainMenu():
-        #// Handles navigating main menu
-        pass
+
+#//////// I am going to need to create a new window for Import/Export
+    def MainMenu(self):
+        """
+        Navigating the main menu. 
+        
+        This is intended to be called as an 'else' for the main loop for any options that don't require a separate window.
+        """
+        while True:
+            event, value = self.window.read()
+
+            print(str(event[0]), file=self.process.stdin)
+            self.process.stdin.flush()
+
+            if str(event[0]) == "1":#// Confirming rebuild
+                print(str(event[0]), file=self.process.stdin)
+                self.process.stdin.flush()
+            if str(event[0]) == "5":
+                pass #// Create a file popup
+        
+
 
     def UtilityMenu(self):
+        """
+        Utility menu has 2 options both of which require () input.
+        """
 
         print('7', file=self.process.stdin) #// Acess Menu
         self.process.stdin.flush()
@@ -87,12 +108,28 @@ class Menu():
             self.process.stdin.flush()
 
     def PatchesMenu(self):
+        """
+        Patches menu of the tool stays open until exited, so this takes in reads using a simple while loop until its closed.
+        """
 
         print('6', file=self.process.stdin)
         self.process.stdin.flush()
+        while True:
+            event, value = self.window.read()
 
-        event, value = self.window.read()
+            print(str(event[0]), file=self.process.stdin)
+            self.process.stdin.flush()
 
-        print(event)
+            for i in range(0,50):
+                line = self.process.stdout.readline()
+                print(line)
+            pass #// Note to self, somewhere during the execution of the loop it is entering a command infintely again. 
+
+            if event == sg.WIN_CLOSED or event == 'Exit':
+                print("0", file=self.process.stdin)
+                self.process.stdin.flush()
+                self.window.close()
+                break
+        
 
 

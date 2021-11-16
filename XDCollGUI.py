@@ -9,23 +9,28 @@ import WindowDef
 
 #----------------
 
-process = subprocess.Popen("GoD-Tool.exe XDGoD.iso", text=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=STDOUT)
+process = subprocess.Popen("GoD-Tool.exe XDGoD.iso", text=True, stdin=subprocess.PIPE, bufsize=1)
 
-def BackToMain():
-    #// This is my lazy solution to navigating to the main menu.
-    for i in range(0,3):
-        print('0', file=process.stdin)
-        process.stdin.flush()
+
+def Toolbar():
+    """
+    Easy way to edit toolbar info
+    """
+    if event == 'About...':
+        sg.Popup("GoD Tool V2.4.4\nby Stars Momodu\nTwitter: @StarsMmd | Discord: Stars#4434\nsource code:\n https://github.com/PekanMmd/Pokemon-XD-Code.git")
 
 
 #--- Window Definitions ---#
 window = sg.Window('Pokemon XD/Colosseum Test GUI', WindowDef.layout, alpha_channel=0.95)
 
-window2 = sg.Window('Pokemon XD/Colosseum Test GUI - Utility Window', WindowDef.utilmenu, modal=True, resizable=True ,alpha_channel=0.95)
+window2 = sg.Window('Pokemon XD/Colosseum Test GUI - Utility Window', WindowDef.utilmenu, modal=True, resizable=True,
+            alpha_channel=0.95)
 
-window3 = sg.Window('Pokemon XD/Colosseum Test GUI - Randomizer Window', WindowDef.randommenu, modal=True, resizable=True, alpha_channel=0.95)
+window3 = sg.Window('Pokemon XD/Colosseum Test GUI - Randomizer Window', WindowDef.randommenu, modal=True, resizable=True,
+            alpha_channel=0.95)
 
-window4 = sg.Window('Pokemon XD/Colosseum Test GUI - Patches Window', WindowDef.patchmenu, modal=True, resizable=True, alpha_channel=0.95)
+window4 = sg.Window('Pokemon XD/Colosseum Test GUI - Patches Window', WindowDef.patchmenu, modal=True, resizable=True,
+            alpha_channel=0.95)
 # ---- 
 
 
@@ -36,16 +41,22 @@ window4 = sg.Window('Pokemon XD/Colosseum Test GUI - Patches Window', WindowDef.
 
 
 while True: #// Event loop
+
     event, values = window.read()
+
     if event == sg.WIN_CLOSED or event == 'Exit':
         break
+    if event == 'About...':
+        Toolbar()
+
     if event == 'Utilities': #// Open Utility Menu
         menus.Menu(process, window2).UtilityMenu()
     if event == 'Randomizer':
         menus.Menu(process, window3).RandomMenu()
     if event == 'Patches':
         menus.Menu(process, window4).PatchesMenu()
-
+    else:
+        menus.Menu(process, window).MainMenu()
 window.close()
 
 

@@ -25,22 +25,22 @@ sg.LOOK_AND_FEEL_TABLE['MyCreatedTheme'] = {'BACKGROUND': '#3b4071',
 
 #--
 sg.theme('MyCreatedTheme') # // Edit Theme
+
 #---
 
 #---Layout of Main Window---#
 layout = [
 [sg.Menu(menu_def, tearoff=True)],
 [sg.Text('Pokemon XD GoD/Colosseum Tool GUI Test', size=(40, 1), justification='center', font=("Impact", 15), relief=sg.RELIEF_FLAT)],
-
-[sg.Button("Import/Export Files", tooltip="Use this to export files for manual editing and reimport them")],
-[sg.Button("Add File", tooltip="Add a file into the ISO")], 
-[sg.Button("Patches", tooltip="Apply patches to the ISO")], 
-[sg.Button("Utilities", tooltip="Useful code functions for editing the game")],
-[sg.Button("Randomizer", tooltip="Select options to randomize the ISO (Rebuild ISO after this)")], 
-[sg.Button("Data Tables", tooltip="Export, Import or Document game data such as Pokemon stats")],
-[sg.Button("Rebuild ISO", tooltip="Rebuild the ISO using files edited in this tool")], 
-[sg.Button("Delete Unused Files in ISO.", tooltip="Use this if there is not enough space to rebuild the ISO")], 
-[sg.Button("List Files", tooltip="List files in the ISO")], 
+[sg.Button("1 - Rebuild ISO", tooltip="Rebuild the ISO using files edited in this tool")],
+[sg.Button("2 - Delete Unused Files in ISO.", tooltip="Use this if there is not enough space to rebuild the ISO")],
+[sg.Button("3 - List Files", tooltip="List files in the ISO")],
+[sg.Button("4 - Import/Export Files", tooltip="Use this to export files for manual editing and reimport them")],
+[sg.Button("5 - Add File", tooltip="Add a file into the ISO")], 
+[sg.Button("6 - Patches", tooltip="Apply patches to the ISO")], 
+[sg.Button("7 - Utilities", tooltip="Useful code functions for editing the game")],
+[sg.Button("8 - Randomizer", tooltip="Select options to randomize the ISO (Rebuild ISO after this)")], 
+[sg.Button("9 - Data Tables", tooltip="Export, Import or Document game data such as Pokemon stats")],
 [sg.Button("Exit")],
 
 ]
@@ -52,7 +52,7 @@ utilmenu = [
 
 [sg.Button("Extract All Textures")],
 [sg.Button("Extract All Textures w/ Dolphin Filenames")],
-[sg.Output(size=(50,10), key='-OUTPUT-',)],
+[sg.Output(size=(50,10),font='Courier 10')],
 [sg.Button("Back")]
 ]
 
@@ -73,7 +73,7 @@ randommenu = [
 [sg.Checkbox("10 - Randmoize Evolutions")],
 [sg.Checkbox("11 - Randomize Battle Bingo")],
 [sg.Button("Go!", tooltip="Apply Randomizer Settings")],
-[sg.Output(size=(50,10), key='-OUTPUT-')],
+[sg.Output(size=(50,10),font='Courier 10')],
 [sg.Button("Back")]
 
 ]
@@ -110,7 +110,8 @@ patchmenutab2 = [
 [sg.Button("23 - Make engine treat ??? as normal", tooltip="A ??? type in the game will be treated as normal type in the battle engine")]
 ]
 
+#// Patches menu creates a TabGroup of two menus to fit all the patches in.
 patchmenu = [[sg.TabGroup([[sg.Tab('Page 1', patchmenutab1), sg.Tab('Page 2', patchmenutab2)]])],    
           [sg.Button('Exit')],
-		  [sg.Output(size=(50,10), key='-OUTPUT-')],
+		  [sg.Output(size=(50,10),font='Courier 10')],
 		  ]  
