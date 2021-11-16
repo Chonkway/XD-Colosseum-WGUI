@@ -19,11 +19,11 @@ class Menu():
         self.process = process
         self.window = window
 
-    def __del__(self):
-        """
-        Gonna be honest, I don't know what this does but it crashes without this so ¯\_(ツ)_/¯
-        """
-        self._TKOut.__del__()
+    # def __del__(self):
+    #     """
+    #     Gonna be honest, I don't know what this does but it crashes without this so ¯\_(ツ)_/¯
+    #     """
+    #     self._TKOut.__del__()
 
     def MainMenu():
         #// Handles navigating main menu
@@ -35,7 +35,6 @@ class Menu():
         self.process.stdin.flush()
         
         event, value = self.window.read() #// Read events
-        print(event, value)
 
         if event == 'Back':
             print('0', file=self.process.stdin)
@@ -87,9 +86,13 @@ class Menu():
             print("\n", file=self.process.stdin)
             self.process.stdin.flush()
 
-    def PatchesMenu():
-        """
-        Function for patches
-        """
+    def PatchesMenu(self):
+
+        print('6', file=self.process.stdin)
+        self.process.stdin.flush()
+
+        event, value = self.window.read()
+
+        print(event)
 
 

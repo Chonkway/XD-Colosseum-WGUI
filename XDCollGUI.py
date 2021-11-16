@@ -21,11 +21,11 @@ def BackToMain():
 #--- Window Definitions ---#
 window = sg.Window('Pokemon XD/Colosseum Test GUI', WindowDef.layout, alpha_channel=0.95)
 
-window2 = sg.Window('Pokemon XD/Colosseum Test GUI - Utility Window', WindowDef.utilmenu, alpha_channel=0.95)
+window2 = sg.Window('Pokemon XD/Colosseum Test GUI - Utility Window', WindowDef.utilmenu, modal=True, resizable=True ,alpha_channel=0.95)
 
-window3 = sg.Window('Pokemon XD/Colosseum Test GUI - Randomizer Window', WindowDef.randommenu, alpha_channel=0.95)
+window3 = sg.Window('Pokemon XD/Colosseum Test GUI - Randomizer Window', WindowDef.randommenu, modal=True, resizable=True, alpha_channel=0.95)
 
-window4 = sg.Window('Pokemon XD/Colosseum Test GUI - Patches Window', WindowDef.patchmenu, alpha_channel=0.95)
+window4 = sg.Window('Pokemon XD/Colosseum Test GUI - Patches Window', WindowDef.patchmenu, modal=True, resizable=True, alpha_channel=0.95)
 # ---- 
 
 
@@ -43,6 +43,8 @@ while True: #// Event loop
         menus.Menu(process, window2).UtilityMenu()
     if event == 'Randomizer':
         menus.Menu(process, window3).RandomMenu()
+    if event == 'Patches':
+        menus.Menu(process, window4).PatchesMenu()
 
 window.close()
 

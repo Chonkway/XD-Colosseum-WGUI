@@ -79,8 +79,8 @@ randommenu = [
 ]
 
 #---Window for Patches---#
-patchmenu = [
-
+#// There are two menus in order to create two tabs of buttons to fit them on screen.
+patchmenutab1 = [
 [sg.Menu(menu_def, tearoff=True)],
 [sg.Button("1 - Remove foreign language text", tooltip="USA Version Only")],
 [sg.Button("2 - Gen IV physical/special split", tooltip="Will also set moves to their default category")], 
@@ -93,6 +93,9 @@ patchmenu = [
 [sg.Button("9 - Fix shiny glitch", tooltip="Allows Pokemon to be shiny in XD")], 
 [sg.Button("10 - Revert to default shiny behavior", tooltip="Removes the ability for a Pokemon to be shiny in XD")],
 [sg.Button("11 - Allow Shadow Pokemon to be shiny")],
+]
+
+patchmenutab2 = [
 [sg.Button("12 - Never allow Shadow Pokemon to be shiny")], 
 [sg.Button("13 - Always make Shadow Pokemon Shiny")], 
 [sg.Button("14 - Trade evolutions happen at level 40", tooltip="Allows evolutions that would require trade to be a normal event at level 40")],
@@ -100,13 +103,14 @@ patchmenu = [
 [sg.Button("16 - Enable Debug Logs", tooltip="Only useful for development purposes")],
 [sg.Button("17 - All Pokemon can learn any TM")], 
 [sg.Button("18 - All Pokemon catch rates set to 255")],
-
 [sg.Button("19 - EV total above 510", tooltip="Allows you to exceed the typical 510 stat EV total")], 
 [sg.Button("20 - Gen 7+ crit chance", tooltip="Changes the crit probability to the stage formula used in later generations")], 
 [sg.Button("21 - Set all battles to single battles")],
 [sg.Button("22 - Set all battles to double battles")], 
-[sg.Button("23 - Make engine treat ??? as normal", tooltip="A ??? type in the game will be treated as normal type in the battle engine")],
-[sg.Output(size=(50,10), key='-OUTPUT-')],
-[sg.Button("Exit")],
+[sg.Button("23 - Make engine treat ??? as normal", tooltip="A ??? type in the game will be treated as normal type in the battle engine")]
 ]
 
+patchmenu = [[sg.TabGroup([[sg.Tab('Page 1', patchmenutab1), sg.Tab('Page 2', patchmenutab2)]])],    
+          [sg.Button('Exit')],
+		  [sg.Output(size=(50,10), key='-OUTPUT-')],
+		  ]  
