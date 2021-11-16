@@ -51,9 +51,11 @@ utilmenu = [
 [sg.Menu(menu_def, tearoff=True)],
 [sg.Text('Pokemon XD GoD/Colosseum Utilities', size=(40, 1), justification='center', font=("Impact", 15), relief=sg.RELIEF_FLAT)],
 
-[sg.Button("Extract All Textures")],
-[sg.Button("Extract All Textures w/ Dolphin Filenames")],
-# [sg.Output(size=(50,10),font='Courier 10')],
+[sg.Button("1 - Extract All Textures")],
+[sg.Button("2 - Extract All Textures w/ Dolphin Filenames")],
+[sg.Button("3 - Increase NPC Levels by 10%")],
+[sg.Button("4 - Increase NPC Levels by 20%")],
+[sg.Button("5 - Increase NPC Levels by 50%")],
 [sg.Button("Back")]
 ]
 

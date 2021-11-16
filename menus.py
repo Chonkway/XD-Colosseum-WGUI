@@ -82,28 +82,14 @@ class Menu():
         while True:
             event, value = self.window.read() #// Read events
 
-            if event == 'Back':
-                print('0', file=self.process.stdin)
-                self.process.stdin.flush()
-                
-            if event == "Extract All Textures":
-                print('1', file=self.process.stdin)
-                self.process.stdin.flush()
+            print(str(event[0]), file=self.process.stdin)
+            self.process.stdin.flush()
 
                 #// Reads stdout 
                 # while True:
                 #     line = self.process.stdout.readline()
                 #     sg.Print(line, font='Courier 10')
                 #     if not line: break    
-                
-            if event == "Extract All Textures w/ Dolphin Filenames":
-                print('2', file=self.process.stdin)
-                self.process.stdin.flush()
-
-                # while True:
-                #     line = self.process.stdout.readline()
-                #     sg.Print(line, font='Courier 10')
-                #     if not line: break
             
             if event == sg.WIN_CLOSED or event == 'Exit':
                 print('0', file=self.process.stdin)
