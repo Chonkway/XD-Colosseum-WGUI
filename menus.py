@@ -100,12 +100,14 @@ class Menu():
                 print('2', file=self.process.stdin)
                 self.process.stdin.flush()
 
-                while True:
-                    line = self.process.stdout.readline()
-                    sg.Print(line, font='Courier 10')
-                    if not line: break
+                # while True:
+                #     line = self.process.stdout.readline()
+                #     sg.Print(line, font='Courier 10')
+                #     if not line: break
             
             if event == sg.WIN_CLOSED or event == 'Exit':
+                print('0', file=self.process.stdin)
+                self.process.stdin.flush()
                 break
 
 
@@ -134,7 +136,7 @@ class Menu():
 
                 print("", file=self.process.stdin)
                 self.process.stdin.flush()
-                
+
 
                             
                 
