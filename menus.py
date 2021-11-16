@@ -26,7 +26,6 @@ class Menu():
     #     self._TKOut.__del__()
 
 
-#//////// I am going to need to create a new window for Import/Export
     def MainMenu(self):
         """
         Navigating the main menu. 
@@ -44,6 +43,11 @@ class Menu():
                 if confirm.lower() == 'yes':
                     print('Y', file=self.process.stdin)
                     self.process.stdin.flush()
+
+                    # while True:
+                    #     line = self.process.stdout.readline()
+                    #     sg.Print(line, font='Courier 10')
+                    #     if not line: break
                 else:
                     break
 
@@ -59,10 +63,10 @@ class Menu():
                     print(filequery, file = self.process.stdin)#// Writes filepath to tool for file addition
                     self.process.stdin.flush()
 
-                    while True:
-                        line = self.process.stdout.readline()
-                        sg.Print(line, font='Courier 10')
-                        if not line: break
+                    # while True:
+                    #     line = self.process.stdout.readline()
+                    #     sg.Print(line, font='Courier 10')
+                    #     if not line: break
 
                     print('exit', file=self.process.stdin)
                     self.process.stdin.flush()
@@ -70,35 +74,40 @@ class Menu():
                     break
 
                 
-    def UtilityMenu(self):
+    def UtilityMenu(self, progress_bar):#// Not sure what the exit screen is like after this is finished, need to let it run
 
         print('7', file=self.process.stdin) #// Acess Menu
         self.process.stdin.flush()
-        
-        event, value = self.window.read() #// Read events
 
-        if event == 'Back':
-            print('0', file=self.process.stdin)
-            self.process.stdin.flush()
+        while True:
+            event, value = self.window.read() #// Read events
+
+            if event == 'Back':
+                print('0', file=self.process.stdin)
+                self.process.stdin.flush()
+                
+            if event == "Extract All Textures":
+                print('1', file=self.process.stdin)
+                self.process.stdin.flush()
+
+                #// Reads stdout 
+                # while True:
+                #     line = self.process.stdout.readline()
+                #     sg.Print(line, font='Courier 10')
+                #     if not line: break    
+                
+            if event == "Extract All Textures w/ Dolphin Filenames":
+                print('2', file=self.process.stdin)
+                self.process.stdin.flush()
+
+                while True:
+                    line = self.process.stdout.readline()
+                    sg.Print(line, font='Courier 10')
+                    if not line: break
             
-        if event == "Extract All Textures":
-            print('1', file=self.process.stdin)
-            self.process.stdin.flush()
+            if event == sg.WIN_CLOSED or event == 'Exit':
+                break
 
-            #// Reads stdout 
-            while True:
-                line = self.process.stdout.readline()
-                sg.Print(line, font='Courier 10')
-                if not line: break    
-            
-        if event == "Extract All Textures w/ Dolphin Filenames":
-            print('2', file=self.process.stdin)
-            self.process.stdin.flush()
-
-            while True:
-                line = self.process.stdout.readline()
-                sg.Print(line, font='Courier 10')
-                if not line: break
 
     def RandomMenu(self):
         """
@@ -109,23 +118,31 @@ class Menu():
         print('8', file=self.process.stdin)
         self.process.stdin.flush()
 
-        event, value = self.window.read()
+        while True:
 
-        if event == "Go!":
-            for i in value:
-                if value[i] == True:
-                    print(str(i), file=self.process.stdin)
-                    self.process.stdin.flush()
+            event, value = self.window.read()
 
-            print("start", file=self.process.stdin)
-            self.process.stdin.flush()
-            #// Generates stdout
-            while True:
-                line = self.process.stdout.readline()
-                sg.Print(line, font='Courier 10')
-                if not line: break
-            print("\n", file=self.process.stdin)
-            self.process.stdin.flush()
+            if event == "Go!":
+                for i in value:
+                    if value[i] == True:
+                        print(str(i), file=self.process.stdin)
+                        self.process.stdin.flush()
+                    
+
+                print("start", file=self.process.stdin)
+                self.process.stdin.flush()
+
+                print("", file=self.process.stdin)
+                self.process.stdin.flush()
+                
+
+                            
+                
+                
+            if event == sg.WIN_CLOSED or event == 'Exit':
+                print('0', file=self.process.stdin)
+                self.process.stdin.flush()
+                break
 
     def PatchesMenu(self):
         """
@@ -140,10 +157,10 @@ class Menu():
             print(str(event[0]), file=self.process.stdin)
             self.process.stdin.flush()
 
-            while True:
-                line = self.process.stdout.readline()
-                sg.Print(line, font='Courier 10')
-                if not line: break
+            # while True:
+            #     line = self.process.stdout.readline()
+            #     sg.Print(line, font='Courier 10')
+            #     if not line: break
 
             if event == sg.WIN_CLOSED or event == 'Exit':
                 print("0", file=self.process.stdin)
@@ -161,11 +178,11 @@ class Menu():
         while True:
             event, value = self.window.read()
             print(str(event.lower()), file=self.process.stdin)
-            
-            while True:
-                line = self.process.stdout.readline()
-                sg.Print(line, font='Courier 10')
-                if not line: break
+
+            # while True:
+            #     line = self.process.stdout.readline()
+            #     sg.Print(line, font='Courier 10')
+            #     if not line: break
 
             if event == sg.WIN_CLOSED or event == 'Exit':
                 break

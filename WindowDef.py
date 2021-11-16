@@ -45,6 +45,7 @@ layout = [
 
 ]
 
+
 #---Window for Utilities---#
 utilmenu = [
 [sg.Menu(menu_def, tearoff=True)],

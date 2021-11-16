@@ -3,7 +3,7 @@ from sys import stdin, stdout
 from tkinter.constants import TRUE
 import PySimpleGUI as sg
 from subprocess import STDOUT, Popen, TimeoutExpired, check_output, PIPE, run
-from PySimpleGUI.PySimpleGUI import Menu, Output, ToolTip
+from PySimpleGUI.PySimpleGUI import Menu, Output, ToolTip, Window
 import menus
 import WindowDef
 
@@ -12,7 +12,7 @@ import WindowDef
 #// Should keep a persistent value of this eventually so users don't have to reselect everytime they run the tool in later version
 iso_path = sg.PopupGetFile('Point to the path of your ISO')
 
-process = subprocess.Popen(["GoD-Tool.exe", iso_path], text=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=STDOUT, bufsize=1)
+process = subprocess.Popen(["GoD-Tool.exe", iso_path], text=True, stdin=subprocess.PIPE)
 
 
 def Toolbar():
@@ -20,7 +20,8 @@ def Toolbar():
     Easy way to edit toolbar info
     """
     if event == 'About...':
-        sg.Popup("GoD Tool V2.4.4\nby Stars Momodu\nTwitter: @StarsMmd | Discord: Stars#4434\nsource code:\n https://github.com/PekanMmd/Pokemon-XD-Code.git")
+        sg.Popup("GoD Tool V2.4.4\nby Stars Momodu\nTwitter: @StarsMmd | Discord: Stars#4434\nsource code:\n https://github.com/PekanMmd/Pokemon-XD-Code.git\n\n")
+
 
 
 #--- Window Definitions ---#
@@ -38,7 +39,6 @@ window4 = sg.Window('Pokemon XD/Colosseum Test GUI - Patches Window', WindowDef.
 window5 = sg.Window('Pokemon XD GoD/Colosseum Test GUI - Import/Export Menu', WindowDef.ImpExpMenu, modal=True, resizable=True,
             alpha_channel=0.95, element_justification='center')
 # ---- 
-
 
 
 
