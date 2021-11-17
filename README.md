@@ -4,8 +4,11 @@
 
  
  ## Dependencies 
+ For the dependencies of the tool itself, you will need the latest releases of [Swift for Windows](https://swift.org/builds/swift-5.3-release/windows10/swift-5.3-RELEASE/swift-5.3-RELEASE-windows10.exe)
  
- You will need to install PySimpleGUI as it is the library almost all of this project uses to generate the GUI:
+ Additionally if you're doing any encoding/decoding with the tool you may want [Cygwin](https://cygwin.com/setup-x86_64.exe)
+ 
+ You will also need to install PySimpleGUI as it is the library almost all of this project uses to generate the GUI:
  > pip install pysimplegui
 
 
