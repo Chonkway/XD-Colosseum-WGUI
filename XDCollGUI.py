@@ -1,3 +1,4 @@
+from pathlib import Path
 import subprocess
 from sys import stdin, stdout
 from tkinter.constants import TRUE
@@ -12,7 +13,7 @@ import WindowDef
 #// Should keep a persistent value of this eventually so users don't have to reselect everytime they run the tool in later version
 iso_path = sg.PopupGetFile('Point to the path of your ISO')
 
-process = subprocess.Popen(["GoD-Tool.exe", iso_path], text=True, stdin=subprocess.PIPE)
+process = subprocess.Popen(["GoD-Tool.exe", '/c', iso_path], text=True, stdin=subprocess.PIPE, shell=True)
 
 
 def Toolbar():
@@ -62,9 +63,9 @@ while True: #// Event loop
         menus.Menu(process, window2).UtilityMenu()
     if event[0] == '8':
         menus.Menu(process, window3).RandomMenu()
-
     else:
         menus.Menu(process, window).MainMenu()
+
 window.close()
 
 

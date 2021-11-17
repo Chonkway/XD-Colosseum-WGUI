@@ -74,7 +74,7 @@ class Menu():
                     break
 
                 
-    def UtilityMenu(self, progress_bar):#// Not sure what the exit screen is like after this is finished, need to let it run
+    def UtilityMenu(self):#// Not sure what the exit screen is like after this is finished, need to let it run
 
         print('7', file=self.process.stdin) #// Acess Menu
         self.process.stdin.flush()
@@ -84,7 +84,6 @@ class Menu():
 
             print(str(event[0]), file=self.process.stdin)
             self.process.stdin.flush()
-
                 #// Reads stdout 
                 # while True:
                 #     line = self.process.stdout.readline()
