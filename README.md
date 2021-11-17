@@ -11,7 +11,7 @@
 
 ### Usage
 
-Drag and drop all the GUI files into the root of your tool.
+Drag and drop all the GUI files into the root of your tool. If you're using the binary, ensure the `.exe` is also in the root of the tool.
 
 The program will first ask you to point to your game file and then give you the main menu. Give it a couple seconds to load the tool and then you should be good to go. You can edit the colors using the `MyCreatedTheme` table in the `MenuDef` python file.
 
