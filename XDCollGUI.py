@@ -4,8 +4,8 @@ from sys import stdin, stdout
 from tkinter.constants import TRUE
 import PySimpleGUI as sg
 from subprocess import STDOUT, Popen, TimeoutExpired, check_output, PIPE, run
-from PySimpleGUI.PySimpleGUI import Menu, Output, ToolTip, Window
-import menus
+from PySimpleGUI.PySimpleGUI import Menu, Output, TabGroup, ToolTip, Window
+import new_menus
 import WindowDef
 
 #----------------
@@ -25,60 +25,24 @@ def Toolbar():
 
 
 
-#--- Window Definitions ---#
-window = sg.Window('Pokemon XD/Colosseum Test GUI', WindowDef.layout, alpha_channel=0.95)
-
-window2 = sg.Window('Pokemon XD/Colosseum Test GUI - Utility Window', WindowDef.utilmenu, modal=True, resizable=True,
-            alpha_channel=0.95)
-
-window3 = sg.Window('Pokemon XD/Colosseum Test GUI - Randomizer Window', WindowDef.randommenu, modal=True, resizable=True,
-            alpha_channel=0.95)
-
-window4 = sg.Window('Pokemon XD/Colosseum Test GUI - Patches Window', WindowDef.patchmenu, modal=True, resizable=True,
-            alpha_channel=0.95)
-
-window5 = sg.Window('Pokemon XD GoD/Colosseum Test GUI - Import/Export Menu', WindowDef.ImpExpMenu, modal=True, resizable=True,
-            alpha_channel=0.95, element_justification='center')
-# ---- 
-
-
+#--- Window Definition ---#
+window = sg.Window('Pokemon XD/Colosseum Test GUI', WindowDef.maintabgrp, alpha_channel=0.95)
 
 
 
 
 
 while True: #// Event loop
+    
+    event, value = window.read()
+    print(event, value)
+     #// values[1] is where the tabgroup returns the menu being accessed, using this for navigation
+    if value[1] == 'Random':
+        new_menus.Menu(process, event, value).RandomMenu()
 
-    event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'Exit':
+    if event == sg.WIN_CLOSED or event == 'Close':
         break
-    if event == 'About...':
-        Toolbar()
-
-    if event[0] == '4':
-        menus.Menu(process, window5).ImportExportMenu()
-    if event[0] == '6':
-        menus.Menu(process, window4).PatchesMenu()
-    if event[0] == '7': #// Open Utility Menu
-        menus.Menu(process, window2).UtilityMenu()
-    if event[0] == '8':
-        menus.Menu(process, window3).RandomMenu()
-    else:
-        menus.Menu(process, window).MainMenu()
 
 window.close()
 
-
-
-
-
-"""
-Checklist
-
-
--Reroute stdout to debug windows
--Clean up code
--Create a cleaner theme
--Find a way for the windows to be reopened at any time
-
-"""
+#// Randomizer menu always selects Move Types to be randomized
