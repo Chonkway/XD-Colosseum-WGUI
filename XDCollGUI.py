@@ -7,13 +7,12 @@ from subprocess import STDOUT, Popen, TimeoutExpired, check_output, PIPE, run
 from PySimpleGUI.PySimpleGUI import Menu, Output, TabGroup, ToolTip, Window
 import new_menus
 import WindowDef
-
 #----------------
 
 #// Should keep a persistent value of this eventually so users don't have to reselect everytime they run the tool in later version
 iso_path = sg.PopupGetFile('Point to the path of your ISO')
 
-process = subprocess.Popen(["GoD-Tool.exe", '/c', iso_path], text=True, stdin=subprocess.PIPE, shell=True)
+process = subprocess.Popen(["GoD-Tool.exe", '/c', iso_path], text=True, stdin=subprocess.PIPE)
 
 
 def Toolbar():
@@ -34,18 +33,19 @@ window = sg.Window('Pokemon XD/Colosseum Test GUI', WindowDef.maintabgrp, alpha_
 
 while True: #// Event loop
     event, value = window.read()
-     #// values[1] is where the tabgroup returns the menu being accessed, using this for navigation
 
-    if value[1] == 'Editing':
+     
+    if value[1] == 'Editing':       #// values[1] is where the tabgroup returns the menu being accessed, using this for navigation
         new_menus.Menu(process, event, value).EditingMenu()
     if value[1] == 'Random':
         new_menus.Menu(process, event, value).RandomMenu()
-    if value[1] == 'Patches':
+    if value[1] == 'Patches':       #// Input isn't working
         new_menus.Menu(process, event, value).PatchMenu()
     if value[1] == 'Import/Export':
         new_menus.Menu(process, event, value).ImportExportMenu()
     if value[1] == 'Utilities':
         new_menus.Menu(process, event, value).UtilityMenu()
+
 
     if event == sg.WIN_CLOSED or event == 'Close':
         break

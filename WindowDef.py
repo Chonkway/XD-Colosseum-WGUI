@@ -47,26 +47,26 @@ utilmenu = [
 
 [sg.Button("Extract All Textures", key='ExtractAll')],
 [sg.Button("Extract All Textures w/ Dolphin Filenames", key='DolphinExtractAll')],
-[sg.Button("Increase NPC Levels by 10%", key='10%')],
-[sg.Button("Increase NPC Levels by 20%", key='20%')],
-[sg.Button("Increase NPC Levels by 50%", key='50%')]
+[sg.Button("Increase NPC Levels by 10%", key='NPC10')],
+[sg.Button("Increase NPC Levels by 20%", key='NPC20')],
+[sg.Button("Increase NPC Levels by 50%", key='NPC50')]
 ]
 
 #---Window for Randomizer---#
 randommenu = [
 [sg.Text('Pokemon XD GoD/Colosseum Randomizer', size=(40, 1), justification='center', font=("Impact", 15), relief=sg.RELIEF_FLAT)],
 
-[sg.Checkbox("1 - Randomize All Trainer/Wild Pokemon", key='-1-')],
-[sg.Checkbox("2 - Randomize Shadow Pokemon Only", key='-2-')],
-[sg.Checkbox("3 - Randomize Pokemon Using Similar BST", key='-3-')],
-[sg.Checkbox("4 - Randomize Moves", key='-4-')],
-[sg.Checkbox("5 - Randomize Pokemon Types", key='-5-')],
-[sg.Checkbox("6 - Randomize Abilities", key='-6-')],
-[sg.Checkbox("7 - Randomize Pokemon BST", key='-7-')],
-[sg.Checkbox("8 - Randomize Move Types", key='-8-')],
-[sg.Checkbox("9 - Randomize TM and Tutor Moves", key='-9-')],
-[sg.Checkbox("10 - Randmoize Evolutions", key='-10-')],
-[sg.Checkbox("11 - Randomize Battle Bingo", key='-11-')],
+[sg.Checkbox("1 - Randomize All Trainer/Wild Pokemon", key='1.0')],
+[sg.Checkbox("2 - Randomize Shadow Pokemon Only", key='2.0')],
+[sg.Checkbox("3 - Randomize Pokemon Using Similar BST", key='3.0')],
+[sg.Checkbox("4 - Randomize Moves", key='4.0')],
+[sg.Checkbox("5 - Randomize Pokemon Types", key='5.0')],
+[sg.Checkbox("6 - Randomize Abilities", key='6.0')],
+[sg.Checkbox("7 - Randomize Pokemon BST", key='7.0')],
+[sg.Checkbox("8 - Randomize Move Types", key='8.0')],
+[sg.Checkbox("9 - Randomize TM and Tutor Moves", key='9.0')],
+[sg.Checkbox("10 - Randmoize Evolutions", key='10.0')],
+[sg.Checkbox("11 - Randomize Battle Bingo", key='11.0')],
 [sg.Button("Go!", tooltip="Apply Randomizer Settings")],
 
 ]
@@ -103,7 +103,7 @@ patchmenutab2 = [
 ]
 
 #// Patches menu creates a TabGroup of two menus to fit all the patches in.
-patchmenu = [[sg.TabGroup([[sg.Tab('Page 1', patchmenutab1), sg.Tab('Page 2', patchmenutab2)]], enable_events=True)]
+patchmenu = [[sg.TabGroup([[sg.Tab('Page 1', patchmenutab1), sg.Tab('Page 2', patchmenutab2)]])]
 		  ]  
 
 ImpExpMenu = [

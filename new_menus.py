@@ -1,5 +1,7 @@
+from math import trunc
 import PySimpleGUI as sg
 from subprocess import STDOUT, Popen, TimeoutExpired, check_output, PIPE, run
+
 
 
 class Menu():
@@ -25,7 +27,7 @@ class Menu():
         if self.event == "Go!":
             for i in self.value:
                 if self.value[i] == True:
-                    print(str(i[1]))
+                    print(int(float(i)), file=self.process.stdin)       #// Each option requires a unique key, I've opted to create floats to create similar numerical keys that are still unique
                     self.process.stdin.flush()
 
             print("start", file=self.process.stdin)
@@ -73,20 +75,20 @@ class Menu():
 
         print('7', file=self.process.stdin) #// Access Menu
         self.process.stdin.flush()
-
+        
         if self.event == "ExtractAll":
             print('1', file=self.process.stdin)
             self.process.stdin.flush()
         if self.event == "DolphinExtractAll":
             print('2', file=self.process.stdin)
             self.process.stdin.flush()
-        if self.event == "10%":
+        if self.event == "NPC10":
             print('3', file=self.process.stdin)
             self.process.stdin.flush()
-        if self.event == "20%":
+        if self.event == "NPC20":
             print('4', file=self.process.stdin)
             self.process.stdin.flush()
-        if self.event == "50%":
+        if self.event == "NPC50":
             print('5', file=self.process.stdin)
             self.process.stdin.flush()
     
@@ -98,14 +100,9 @@ class Menu():
         print('6', file=self.process.stdin)
         self.process.stdin.flush()
 
-        print(str(self.event), file=self.process.stdin)
+        print(self.event, file=self.process.stdin)
         self.process.stdin.flush()
-
-        # if self.value[1] != 'Patches':
-        #     print('Test')
-            # print("0", file=self.process.stdin)
-            # self.process.stdin.flush()
-
+        
     def ImportExportMenu(self):
         """
 
@@ -113,4 +110,5 @@ class Menu():
         print('4', file=self.process.stdin)
         self.process.stdin.flush()
             
-        print(str(self.event.lower()), file=self.process.stdin)
+        print(str(self.event), file=self.process.stdin)
+
