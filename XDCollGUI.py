@@ -33,16 +33,23 @@ window = sg.Window('Pokemon XD/Colosseum Test GUI', WindowDef.maintabgrp, alpha_
 
 
 while True: #// Event loop
-    
     event, value = window.read()
-    print(event, value)
      #// values[1] is where the tabgroup returns the menu being accessed, using this for navigation
+
+    if value[1] == 'Editing':
+        new_menus.Menu(process, event, value).EditingMenu()
     if value[1] == 'Random':
         new_menus.Menu(process, event, value).RandomMenu()
+    if value[1] == 'Patches':
+        new_menus.Menu(process, event, value).PatchMenu()
+    if value[1] == 'Import/Export':
+        new_menus.Menu(process, event, value).ImportExportMenu()
+    if value[1] == 'Utilities':
+        new_menus.Menu(process, event, value).UtilityMenu()
 
     if event == sg.WIN_CLOSED or event == 'Close':
         break
 
 window.close()
 
-#// Randomizer menu always selects Move Types to be randomized
+#// Randomizer menu always selects Move Types to be randomized and I have no clue why...it prints the correct values 

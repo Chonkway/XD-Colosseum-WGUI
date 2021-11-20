@@ -32,11 +32,11 @@ sg.theme('MyCreatedTheme') # // Edit Theme
 #---Layout of Main Window---#
 layout = [
 [sg.Text('Pokemon XD GoD/Colosseum Tool GUI Pre-Build', size=(40, 1), justification='center', font=("Impact", 15), relief=sg.RELIEF_FLAT)],
-[sg.Button("Rebuild ISO", tooltip="Rebuild the ISO using files edited in this tool", key='1')],
-[sg.Button("Delete Unused Files in ISO.", tooltip="Use this if there is not enough space to rebuild the ISO", key='2')],
-[sg.Button("List Files", tooltip="List files in the ISO", key='3')],
-[sg.Button("Add File", tooltip="Add a file into the ISO", key='5')], 
-[sg.Button("Data Tables", tooltip="Export, Import or Document game data such as Pokemon stats", key='9')],
+[sg.Button("Rebuild ISO", tooltip="Rebuild the ISO using files edited in this tool", key='Rebuild')],
+[sg.Button("Delete Unused Files in ISO.", tooltip="Use this if there is not enough space to rebuild the ISO", key='Delete')],
+[sg.Button("List Files", tooltip="List files in the ISO", key='List')],
+[sg.Button("Add File", tooltip="Add a file into the ISO", key='Add')], 
+[sg.Button("Data Tables", tooltip="Export, Import or Document game data such as Pokemon stats", key='DataTables')],
 
 ]
 
@@ -45,11 +45,11 @@ layout = [
 utilmenu = [
 [sg.Text('Pokemon XD GoD/Colosseum Utilities', size=(40, 1), justification='center', font=("Impact", 15), relief=sg.RELIEF_FLAT)],
 
-[sg.Button("Extract All Textures", key='1')],
-[sg.Button("Extract All Textures w/ Dolphin Filenames", key='2')],
-[sg.Button("Increase NPC Levels by 10%", key='3')],
-[sg.Button("Increase NPC Levels by 20%", key='4')],
-[sg.Button("Increase NPC Levels by 50%", key='5')]
+[sg.Button("Extract All Textures", key='ExtractAll')],
+[sg.Button("Extract All Textures w/ Dolphin Filenames", key='DolphinExtractAll')],
+[sg.Button("Increase NPC Levels by 10%", key='10%')],
+[sg.Button("Increase NPC Levels by 20%", key='20%')],
+[sg.Button("Increase NPC Levels by 50%", key='50%')]
 ]
 
 #---Window for Randomizer---#
@@ -133,7 +133,7 @@ maintabgrp = [[sg.TabGroup([[sg.Tab('Editing', layout, title_color='Red',border_
                     sg.Tab('Patch Options', patchmenu, title_color='Blue',background_color='Yellow', element_justification='center', key='Patches'),
 					sg.Tab('Import/Export', ImpExpMenu,title_color='Blue',background_color='Yellow', element_justification='center', key='Import/Export'),
 					sg.Tab('Randomizer', randommenu, key='Random'),
-					sg.Tab('Utilities', utilmenu ,title_color='Blue',background_color='Yellow', key='Utilites'),
+					sg.Tab('Utilities', utilmenu ,title_color='Blue',background_color='Yellow', key='Utilities'),
 
                     sg.Button('Close')]], enable_events=True)
 ]]
