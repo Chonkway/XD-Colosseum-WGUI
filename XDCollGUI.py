@@ -33,7 +33,7 @@ window = sg.Window('Pokemon XD/Colosseum Test GUI', WindowDef.maintabgrp, alpha_
 
 while True: #// Event loop
     event, value = window.read()
-
+    print(process.stdin)
      
     if value[1] == 'Editing':       #// values[1] is where the tabgroup returns the menu being accessed, using this for navigation
         new_menus.Menu(process, event, value).EditingMenu()

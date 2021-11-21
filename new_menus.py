@@ -14,7 +14,7 @@ class Menu():
         self.value = value
 
 
-#// Currently has a bug where it inputs an '8' into the randomizer selection for some reason?
+#// Currently has a bug where it inputs an '8' into the randomizer selection for some reason? Works otherwise
     def RandomMenu(self):
         """
         Function for accessing and using the Randomizer Menu.
@@ -36,7 +36,7 @@ class Menu():
             print("", file=self.process.stdin)
             self.process.stdin.flush()
 
-    def EditingMenu(self):
+    def EditingMenu(self):      #// Works just fine
         """
         Handles options for Rebuilding, Deleting, Listing and Adding Files and Data Tables
         """
@@ -71,28 +71,28 @@ class Menu():
         if self.event == 'DataTables':         #// PandasGUI
             sg.Popup('This function does not work quite yet...sorry')
     
-    def UtilityMenu(self):#// Not sure what the exit screen is like after this is finished, need to let it run
+    def UtilityMenu(self):  #// Inputting 7 as the first option, similar to how the randomizer does with 8. Works otherwise
 
-        print('7', file=self.process.stdin) #// Access Menu
+        print('7', file=self.process.stdin)
         self.process.stdin.flush()
-        
+
         if self.event == "ExtractAll":
             print('1', file=self.process.stdin)
             self.process.stdin.flush()
         if self.event == "DolphinExtractAll":
             print('2', file=self.process.stdin)
             self.process.stdin.flush()
-        if self.event == "NPC10":
+        if self.event == 'NPC10':
             print('3', file=self.process.stdin)
             self.process.stdin.flush()
-        if self.event == "NPC20":
+        if self.event == 'NPC20':
             print('4', file=self.process.stdin)
             self.process.stdin.flush()
-        if self.event == "NPC50":
+        if self.event == 'NPC50':
             print('5', file=self.process.stdin)
             self.process.stdin.flush()
     
-    def PatchMenu(self):
+    def PatchMenu(self):      #// Works just fine, maybe a little slow?
         """
         Patches menu keys are simply integers that coorespond to the patch.
         """
@@ -100,6 +100,7 @@ class Menu():
         print('6', file=self.process.stdin)
         self.process.stdin.flush()
 
+        
         print(self.event, file=self.process.stdin)
         self.process.stdin.flush()
         
@@ -112,3 +113,5 @@ class Menu():
             
         print(str(self.event), file=self.process.stdin)
 
+
+#// Most of the menus function fine independently, need to find a good way to ensure the menus are exited out of every tab switch
