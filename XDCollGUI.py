@@ -1,19 +1,19 @@
+from os import pipe, write
 from pathlib import Path
 import subprocess
 from sys import stdin, stdout
 from tkinter.constants import TRUE
 import PySimpleGUI as sg
 from subprocess import STDOUT, Popen, TimeoutExpired, check_output, PIPE, run
-from PySimpleGUI.PySimpleGUI import Menu, Output, ToolTip, Window
-import menus
-import WindowDef
-
+from PySimpleGUI.PySimpleGUI import Menu, Output, TabGroup, ToolTip, Window
+import WinDef
+import MenuFunctions
 #----------------
 
 #// Should keep a persistent value of this eventually so users don't have to reselect everytime they run the tool in later version
 iso_path = sg.PopupGetFile('Point to the path of your ISO')
 
-process = subprocess.Popen(["GoD-Tool.exe", '/c', iso_path], text=True, stdin=subprocess.PIPE, shell=True)
+process = subprocess.Popen(["GoD-Tool.exe", iso_path], text=True, stdin=subprocess.PIPE)
 
 
 def Toolbar():
@@ -25,21 +25,8 @@ def Toolbar():
 
 
 
-#--- Window Definitions ---#
-window = sg.Window('Pokemon XD/Colosseum Test GUI', WindowDef.layout, alpha_channel=0.95)
-
-window2 = sg.Window('Pokemon XD/Colosseum Test GUI - Utility Window', WindowDef.utilmenu, modal=True, resizable=True,
-            alpha_channel=0.95)
-
-window3 = sg.Window('Pokemon XD/Colosseum Test GUI - Randomizer Window', WindowDef.randommenu, modal=True, resizable=True,
-            alpha_channel=0.95)
-
-window4 = sg.Window('Pokemon XD/Colosseum Test GUI - Patches Window', WindowDef.patchmenu, modal=True, resizable=True,
-            alpha_channel=0.95)
-
-window5 = sg.Window('Pokemon XD GoD/Colosseum Test GUI - Import/Export Menu', WindowDef.ImpExpMenu, modal=True, resizable=True,
-            alpha_channel=0.95, element_justification='center')
-# ---- 
+#--- Window Definition ---#
+window = sg.Window('Pokemon XD/Colosseum Test GUI', WinDef.maintabgrp, alpha_channel=0.95, resizable=True)
 
 
 
@@ -47,38 +34,33 @@ window5 = sg.Window('Pokemon XD GoD/Colosseum Test GUI - Import/Export Menu', Wi
 
 
 
-while True: #// Event loop
 
+
+
+
+
+while True:
     event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'Exit':
+    if values['MainMenu'] == 'EditingTools':
+        MenuFunctions.MenuFunction(process, event, values).EditingMenu()
+
+    if values['MainMenu'] == 'Randomizer':
+        MenuFunctions.MenuFunction(process, event, values).RandomMenu()
+
+    if values['MainMenu'] == 'PatchOptions':
+        MenuFunctions.MenuFunction(process, event, values).PatchMenu()
+    
+    if values['MainMenu'] == 'Import/Export':
+        MenuFunctions.MenuFunction(process, event, values).ImportExport()
+
+    if values['MainMenu'] == 'UtilityMenu':
+        MenuFunctions.MenuFunction(process, event, values).UtilityMenu()
+
+    if values['MainMenu'] == 'AllDataTables':
+        MenuFunctions.MenuFunction(process, event, values).DataTables()
+
+    if event == sg.WIN_CLOSED or event == 'Close':
         break
-    if event == 'About...':
-        Toolbar()
-
-    if event[0] == '4':
-        menus.Menu(process, window5).ImportExportMenu()
-    if event[0] == '6':
-        menus.Menu(process, window4).PatchesMenu()
-    if event[0] == '7': #// Open Utility Menu
-        menus.Menu(process, window2).UtilityMenu()
-    if event[0] == '8':
-        menus.Menu(process, window3).RandomMenu()
-    else:
-        menus.Menu(process, window).MainMenu()
-
 window.close()
 
-
-
-
-
-"""
-Checklist
-
-
--Reroute stdout to debug windows
--Clean up code
--Create a cleaner theme
--Find a way for the windows to be reopened at any time
-
-"""
+#// Randomizer menu always selects Move Types to be randomized and I have no clue why...it prints the correct values 
