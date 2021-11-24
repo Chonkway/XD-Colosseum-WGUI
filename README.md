@@ -8,10 +8,10 @@
  
  Additionally if you're doing any encoding/decoding with the tool you may want [Cygwin](https://cygwin.com/setup-x86_64.exe)
  
- You will also need to install PySimpleGUI as it is the library almost all of this project uses to generate the GUI:
+ You will also need to install PySimpleGUI as it is the library almost all of this project uses to generate the GUI if you intend to run the source files:
  > pip install pysimplegui
 
-
+If you're running the binary file you shouldn't require anything for the GUI.
 ### Usage
 
 Drag and drop all the GUI files into the root of your tool. If you're using the binary, ensure the `.exe` is also in the root of the tool.
