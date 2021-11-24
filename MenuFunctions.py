@@ -63,10 +63,9 @@ class MenuFunction():
                     print(int(float(i)), file=self.process.stdin)
                     self.process.stdin.flush()
 
-        print("start", file=self.process.stdin)
+        print('start', file=self.process.stdin)
         self.process.stdin.flush()
-
-        print("", file=self.process.stdin)
+        print('', file=self.process.stdin)
         self.process.stdin.flush()
 
     def UtilityMenu(self):

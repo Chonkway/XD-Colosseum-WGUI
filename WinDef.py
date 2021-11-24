@@ -206,11 +206,11 @@ DataTables = [[sg.TabGroup([[sg.Tab('Page 1', DataTables1, key='DataPage1'), sg.
 
 #---TabGroup that holds every window definition---#
 maintabgrp = [[sg.TabGroup([[sg.Tab('Editing', EditingTools, title_color='Blue',tooltip='Personal details', element_justification= 'center', key='EditingTools'),
-                    sg.Tab('Patch Options', patchmenu, title_color='Blue',background_color='Yellow', element_justification='center', key='PatchOptions'),
-					sg.Tab('Import/Export', ImpExpMenu,title_color='Blue',background_color='Yellow', element_justification='center', key='Import/Export'),
+                    sg.Tab('Patch Options', patchmenu, title_color='Blue', element_justification='center', key='PatchOptions'),
+					sg.Tab('Import/Export', ImpExpMenu,title_color='Blue', element_justification='center', key='Import/Export'),
 					sg.Tab('Randomizer', randommenu, key='Randomizer'),
-					sg.Tab('Utilities', utilmenu , title_color='Blue',background_color='Yellow', key='UtilityMenu'),
-					sg.Tab('Data Tables', DataTables ,title_color='Blue',background_color='Yellow', key='AllDataTables')
+					sg.Tab('Utilities', utilmenu , title_color='Blue', key='UtilityMenu'),
+					sg.Tab('Data Tables', DataTables ,title_color='Blue', key='AllDataTables')
 
 ]], enable_events=True, key='MainMenu')]]
 
