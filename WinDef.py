@@ -214,8 +214,3 @@ maintabgrp = [[sg.TabGroup([[sg.Tab('Editing', EditingTools, title_color='Blue',
 
 ]], enable_events=True, key='MainMenu')]]
 
-
-"""
-
-
-"""
