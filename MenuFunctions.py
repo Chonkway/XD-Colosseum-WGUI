@@ -102,8 +102,19 @@ class MenuFunction():
         print(str(self.event).lower(), file=self.process.stdin)
         self.process.stdin.flush()
 
-    def DataTables():
+    def DataTables(self, function):
         """
-        placeholder, want to read stdout and create popups for datatable information
+        DataTables function, hoping to create a function to read logfiles for creating popups
         """
-        pass
+        self.function = function
+
+        print(9, file=self.process.stdin)
+        self.process.stdin.flush()
+
+        if self.event != 'MainMenu': #//MainMenu stayed queued up 
+            print(int(float(self.event)))
+            print(int(float(self.event)), file=self.process.stdin)
+            self.process.stdin.flush()
+        
+
+        

@@ -104,7 +104,7 @@ ImpExpMenu = [
 DataTables1 = [
 [sg.Button('Battle', key='1.00')],
 [sg.Button('Battle Bingo Card', key='2.00')],
-[sg.Button('Battle CD', '3.00')],
+[sg.Button('Battle CD', key='3.00')],
 [sg.Button('Battle Layout', key='4.00')],
 [sg.Button('Battlefield', key='5.00')],
 [sg.Button('Character', key='6.00')],
@@ -212,5 +212,6 @@ maintabgrp = [[sg.TabGroup([[sg.Tab('Editing', EditingTools, title_color='Blue',
 					sg.Tab('Utilities', utilmenu , title_color='Blue', key='UtilityMenu'),
 					sg.Tab('Data Tables', DataTables ,title_color='Blue', key='AllDataTables')
 
-]], enable_events=True, key='MainMenu')]]
+]], enable_events=True, key='MainMenu')],
+[sg.Multiline(enter_submits=False, reroute_stdout=True, reroute_stderr=True)]]
 
